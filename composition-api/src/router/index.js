@@ -1,8 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import daybookRouter from '../modules/daybook/router'
-import authRouter from '../modules/auth/router'
-import isAuthenticatedGuard from '../modules/auth/guards/authGuard'
 
 const routes = [
   {
@@ -19,13 +16,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/daybook',
-    beforeEnter: [isAuthenticatedGuard],
-    ...daybookRouter
+    path: '/counter',
+    name: 'counter',
+    component: () => import('../views/CounterView')
   },
   {
-    path: '/auth',
-    ...authRouter
+    path: '/characters',
+    name: 'characters',
+    component: () => import('../views/CharactersView')
+  },
+  {
+    path: '/pokemon-search',
+    name: 'pokemon-search',
+    component: () => import('../views/SearchPokemonView')
+  },
+  {
+    path: '/pokemon/:id',
+    name: 'pokemon-id',
+    component: () => import('../views/PokemonView')
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: () => import('../views/TodoView')
   }
 ]
 
